@@ -9,7 +9,7 @@ export function errorResponse(response, {
 
 export function successResponse(response, {
     status = statusCode.OK,
-    data = ''
+    data
 }) {
     return response.status(status).json({data, status})
 }
