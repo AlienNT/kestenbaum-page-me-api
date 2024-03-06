@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<main class="main">
+    <div class="sidebar">
+        <div class="container">
+            <nav class="navigation">
+                <ul>
+                    <li class="navigation-item">
+                        <a href="#host">Host</a>
+                    </li>
+                    <li class="navigation-item">
+                        <a href="#skills">Skills</a>
+                    </li>
+                    <li class="navigation-item">
+                        <a href="#contacts">Contacts</a>
+                    </li>
+                    <li class="navigation-item">
+                        <a href="#works">Works</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="content">
+        <div class="section" id="host">
+            <div class="container">
+                <div class="section-title">Host</div>
+                <div class="host">
+                    <div class="host-value">http://localhost:5000/api</div>
+                </div>
+            </div>
+        </div>
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-title">Skills</div>
+                <ul class="request-list">
+                    <li class="request-list__item">
+                        <div class="request-method get">get</div>
+                        <div class="request-route">/skills</div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method get">get</div>
+                        <div class="request-route">/skills/:id</div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method post">post</div>
+                        <div class="request-route">/skills</div>
+                        <div class="request-description">
+                            <ul class="request-fields">
+                                <li class="request-field">
+                                    <div class="field-name">title</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                                <li class="request-field require">
+                                    <div class="field-name">img</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method patch">update</div>
+                        <div class="request-route">/skills/:id</div>
+                        <div class="request-description">
+                            <ul class="request-fields">
+                                <li class="request-field">
+                                    <div class="field-name">title</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                                <li class="request-field">
+                                    <div class="field-name">img</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method delete">delete</div>
+                        <div class="request-route">/skills/:id</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="section" id="contacts">
+            <div class="container">
+                <div class="section-title">Contacts</div>
+                <ul class="request-list">
+                    <li class="request-list__item">
+                        <div class="request-method get">get</div>
+                        <div class="request-route">/contacts</div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method get">get</div>
+                        <div class="request-route">/contacts/:id</div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method post">post</div>
+                        <div class="request-route">/contacts</div>
+                        <div class="request-description">
+                            <ul class="request-fields">
+                                <li class="request-field require">
+                                    <div class="field-name">title</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                                <li class="request-field require">
+                                    <div class="field-name">value</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method patch">update</div>
+                        <div class="request-route">/contacts/:id</div>
+                        <div class="request-description">
+                            <ul class="request-fields">
+                                <li class="request-field require">
+                                    <div class="field-name">title</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                                <li class="request-field require">
+                                    <div class="field-name">value</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method delete">delete</div>
+                        <div class="request-route">/contacts/:id</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="section" id="works">
+            <div class="container">
+                <div class="section-title">Works</div>
+                <ul class="request-list">
+                    <li class="request-list__item">
+                        <div class="request-method get">get</div>
+                        <div class="request-route">/works</div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method get">get</div>
+                        <div class="request-route">/works/:id</div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method post">post</div>
+                        <div class="request-route">/works</div>
+                        <div class="request-description">
+                            <ul class="request-fields">
+                                <li class="request-field require">
+                                    <div class="field-name">title</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                                <li class="request-field">
+                                    <div class="field-name">img</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                                <li class="request-field require">
+                                    <div class="field-name">link</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                                <li class="request-field">
+                                    <div class="field-name">category</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method patch">update</div>
+                        <div class="request-route">/works/:id</div>
+                        <div class="request-description">
+                            <ul class="request-fields">
+                                <li class="request-field require">
+                                    <div class="field-name">title</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                                <li class="request-field">
+                                    <div class="field-name">img</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                                <li class="request-field require">
+                                    <div class="field-name">link</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                                <li class="request-field">
+                                    <div class="field-name">category</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method delete">delete</div>
+                        <div class="request-route">/works/:id</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</main>
+</body>
+</html>
