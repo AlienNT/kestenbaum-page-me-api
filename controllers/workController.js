@@ -2,7 +2,6 @@ import {errorResponse, successResponse} from "../helpers/responseHelper.js";
 import {Work} from "../models/index.js";
 import statusCode from "../helpers/statusCodeHelper.js";
 import DocumentFieldService from "../services/DocumentFieldService.js";
-import {model} from "mongoose";
 
 class WorkController {
     async getAll(req, res) {
