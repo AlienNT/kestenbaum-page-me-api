@@ -5,7 +5,6 @@ class WorkController {
         } catch (e) {
 
         }
-
     }
 
     async getOne(req, res) {
@@ -41,3 +40,4 @@ class WorkController {
         }
     }
 }
+export default new WorkController()
