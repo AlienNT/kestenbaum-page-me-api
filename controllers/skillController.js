@@ -22,7 +22,7 @@ class SkillController {
         } catch (e) {
             console.log('GET skills error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }
@@ -46,7 +46,7 @@ class SkillController {
         } catch (e) {
             console.log('GET skill error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }
@@ -76,7 +76,7 @@ class SkillController {
         } catch (e) {
             console.log('CREATE skill error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }
@@ -115,7 +115,7 @@ class SkillController {
         } catch (e) {
             console.log('UPDATE skill error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }
@@ -147,7 +147,7 @@ class SkillController {
         } catch (e) {
             console.log('DELETE skill error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }

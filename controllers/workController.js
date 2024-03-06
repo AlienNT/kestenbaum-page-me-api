@@ -2,6 +2,7 @@ import {errorResponse, successResponse} from "../helpers/responseHelper.js";
 import {Work} from "../models/index.js";
 import statusCode from "../helpers/statusCodeHelper.js";
 import DocumentFieldService from "../services/DocumentFieldService.js";
+import {model} from "mongoose";
 
 class WorkController {
     async getAll(req, res) {
@@ -20,7 +21,7 @@ class WorkController {
         } catch (e) {
             console.log('GET_ALL work error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }
@@ -50,7 +51,7 @@ class WorkController {
         } catch (e) {
             console.log('GET_ONE work error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
 
@@ -81,7 +82,7 @@ class WorkController {
         } catch (e) {
             console.log('CREATE work error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }
@@ -122,7 +123,7 @@ class WorkController {
         } catch (e) {
             console.log('UPDATE work error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }
@@ -154,7 +155,7 @@ class WorkController {
         } catch (e) {
             console.log('DELETE work error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }

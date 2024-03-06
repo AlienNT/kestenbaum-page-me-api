@@ -19,7 +19,7 @@ class ContactController {
         } catch (e) {
             console.log('GET_ALL contact error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }
@@ -48,7 +48,7 @@ class ContactController {
         } catch (e) {
             console.log('GET_ONE contact error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }
@@ -78,7 +78,7 @@ class ContactController {
         } catch (e) {
             console.log('CREATE contact error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }
@@ -119,7 +119,7 @@ class ContactController {
         } catch (e) {
             console.log('UPDATE contact error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }
@@ -151,7 +151,7 @@ class ContactController {
         } catch (e) {
             console.log('DELETE contact error', e)
             return errorResponse(res, {
-                errors: [e]
+                errors: e
             })
         }
     }
