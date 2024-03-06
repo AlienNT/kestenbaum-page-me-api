@@ -1,3 +1,5 @@
+import statusCode from "./statusCodeHelper.js";
+
 export function errorResponse(response, {
     status = 500,
     errors = ['request error']
@@ -6,7 +8,7 @@ export function errorResponse(response, {
 }
 
 export function successResponse(response, {
-    status = 200,
+    status = statusCode.OK,
     data = ''
 }) {
     return response.status(status).json({data, status})
