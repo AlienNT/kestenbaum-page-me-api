@@ -17,7 +17,7 @@ dotenv.config()
 
 const API = new Express()
     .use(checkConnection)
-    .use(bodyParser.json())
+    .use(bodyParser.json({limit: "10mb"}))
     .use(cors())
     .use(config.API_ROUTE, routes)
     .use(Express.static(filePath))
