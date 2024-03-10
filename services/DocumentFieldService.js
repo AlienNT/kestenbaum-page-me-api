@@ -11,6 +11,10 @@ class DocumentFieldService {
         return this.#getFields(req?.body, 'title', 'value')
     }
 
+    requestCategoryFields(req) {
+        return this.#getFields(req?.body, 'value')
+    }
+
     #getFields(body, ...fields) {
         if (!fields?.length) return null
 
