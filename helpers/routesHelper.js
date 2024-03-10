@@ -19,5 +19,12 @@ export const routeNames = {
         CREATE: '/works',
         UPDATE: '/works/:id',
         DELETE: '/works/:id',
+    },
+    CATEGORIES: {
+        GET_WITH_WORKS: '/categories/:id',
+        GET_ALL: '/categories',
+        CREATE: '/categories',
+        UPDATE: '/categories/:id',
+        DELETE: '/categories/:id',
     }
 }
