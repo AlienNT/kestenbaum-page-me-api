@@ -26,5 +26,10 @@ export const routeNames = {
         CREATE: '/categories',
         UPDATE: '/categories/:id',
         DELETE: '/categories/:id',
+    },
+    AUTH: {
+        LOGIN: '/login',
+        LOGOUT: '/logout',
+        REGISTRATION: '/registration',
     }
 }
