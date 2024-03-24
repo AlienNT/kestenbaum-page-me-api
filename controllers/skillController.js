@@ -2,7 +2,7 @@ import {errorResponse, successResponse} from "../helpers/responseHelper.js";
 
 import {Skill} from "../models/index.js";
 import statusCode from "../helpers/statusCodeHelper.js";
-import DocumentFieldService from "../services/DocumentFieldService.js";
+import DocumentFieldService from "../services/documentFieldService.js";
 
 class SkillController {
     async gelAll(req, res) {
