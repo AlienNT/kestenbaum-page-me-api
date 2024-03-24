@@ -1,7 +1,7 @@
 import {errorResponse, successResponse} from "../helpers/responseHelper.js";
 
 import {Category} from "../models/index.js";
-import DocumentFieldService from "../services/DocumentFieldService.js";
+import DocumentFieldService from "../services/documentFieldService.js";
 import statusCode from "../helpers/statusCodeHelper.js";
 
 class CategoryController {
