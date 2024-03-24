@@ -52,7 +52,7 @@ class AuthController {
 
             setCookie(res, {
                 name: 'token',
-                value: newToken.value
+                value: newToken.tokenValue
             })
 
             return successResponse(res, {
