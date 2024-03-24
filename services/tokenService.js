@@ -22,14 +22,18 @@ class TokenService {
     }
 
     async getToken(req) {
-        const authorizationHeader = req.headers.authorization
-        return authorizationHeader ? authorizationHeader.split(' ')[1] : null
+        //для токена доступа
+       /* const authorizationHeader = req.headers.authorization
+        return authorizationHeader ? authorizationHeader.split(' ')[1] : null*/
+
+        return req?.cookies?.token || null
     }
 
 
     async generateTokens(_id) {
         return {
-            refreshToken: this.generateRefreshToken(), accessToken: this.generateAccessToken(_id)
+            refreshToken: this.generateRefreshToken(),
+            accessToken: this.generateAccessToken(_id)
         }
     }
 
