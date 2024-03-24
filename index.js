@@ -7,6 +7,7 @@ import config from "./config.js";
 import bodyParser from "body-parser";
 
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import {errorResponse} from "./helpers/responseHelper.js";
 import url from "url";
 
@@ -17,6 +18,7 @@ dotenv.config()
 
 const API = new Express()
     .use(checkConnection)
+    .use(cookieParser())
     .use(bodyParser.json({limit: "10mb"}))
     .use(cors())
     .use(config.API_ROUTE, routes)
