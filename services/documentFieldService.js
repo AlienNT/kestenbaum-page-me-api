@@ -1,4 +1,7 @@
 class DocumentFieldService {
+    requestAuthFields(req) {
+        return this.#getFields(req?.body, 'login', 'password')
+    }
     requestSkillFields(req) {
         return this.#getFields(req?.body, 'title', 'img')
     }
