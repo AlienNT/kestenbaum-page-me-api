@@ -1,7 +1,7 @@
 import {errorResponse, successResponse} from "../helpers/responseHelper.js";
 import {Contact} from "../models/index.js";
 import statusCode from "../helpers/statusCodeHelper.js";
-import DocumentFieldService from "../services/DocumentFieldService.js";
+import DocumentFieldService from "../services/documentFieldService.js";
 
 class ContactController {
     async gelAll(req, res) {
