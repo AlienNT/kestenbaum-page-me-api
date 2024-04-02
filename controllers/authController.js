@@ -18,7 +18,7 @@ class AuthController {
                 })
             }
 
-            const user = await User.findOne({login})
+            const user = await User.findOne({login: fields.login})
 
             if (!user) {
                 return errorResponse(res, {
@@ -28,7 +28,7 @@ class AuthController {
             }
 
             const isValidPassword = await AuthService.comparePassword({
-                requestPass: password,
+                requestPass: fields.password,
                 userPass: user.password
             })
 
