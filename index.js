@@ -20,7 +20,10 @@ const API = new Express()
     .use(checkConnection)
     .use(cookieParser())
     .use(bodyParser.json({limit: "10mb"}))
-    .use(cors())
+    .use(cors({
+        origin: config.ORIGINS,
+        credentials: true,
+    }))
     .use(config.API_ROUTE, routes)
     .use(Express.static(filePath))
 
