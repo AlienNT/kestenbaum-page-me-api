@@ -56,8 +56,7 @@ class AuthController {
             })
 
             return successResponse(res, {
-                status: statusCode.OK,
-                data: user._id
+                status: statusCode.OK
             })
         } catch (e) {
             console.log('error', e)
@@ -125,13 +124,6 @@ class AuthController {
             return errorResponse(res, {
                 errors: ['create user error', e]
             })
-        }
-    }
-
-    async refresh(req, res) {
-        try {
-        } catch (e) {
-            console.log('error', e)
         }
     }
 }
