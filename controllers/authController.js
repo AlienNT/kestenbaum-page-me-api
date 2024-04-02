@@ -9,12 +9,12 @@ import DocumentFieldService from "../services/documentFieldService.js";
 class AuthController {
     async login(req, res) {
         try {
-            const {login, password} = DocumentFieldService.requestAuthFields(req)
+            const fields = DocumentFieldService.requestAuthFields(req)
 
-            if (!login || !password) {
+            if (!fields?.login || !fields?.password) {
                 return errorResponse(res, {
                     status: statusCode.UNAUTHORIZED,
-                    errors: ['required fields not send' + [!login && 'login', !password && 'password'].join(', ')]
+                    errors: ['required fields not send' + [!fields?.login && 'login', !fields?.password && 'password'].join(', ')]
                 })
             }
 
