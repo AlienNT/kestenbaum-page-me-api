@@ -1,5 +1,5 @@
 import {errorResponse, setCookie, successResponse} from "../helpers/responseHelper.js";
-import {User} from "../models/index.js";
+import {Token, User} from "../models/index.js";
 
 import statusCode from "../helpers/statusCodeHelper.js";
 import AuthService from "../services/authService.js";
@@ -69,8 +69,26 @@ class AuthController {
 
     async logout(req, res) {
         try {
+            const {token} = req
+
+            const foundedToken = await Token.findOneAndDelete({
+                tokenValue: token
+            })
+
+            if (!foundedToken) {
+                return errorResponse(res, {
+                    errors: ['logout error']
+                })
+            }
+
+            return successResponse(res, {
+                status: statusCode.OK
+            })
         } catch (e) {
             console.log('error', e)
+            return errorResponse(res, {
+                errors: ['logout error', e]
+            })
         }
     }
 
