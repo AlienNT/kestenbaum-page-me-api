@@ -15,6 +15,9 @@
                         <a href="#host">Host</a>
                     </li>
                     <li class="navigation-item">
+                        <a href="#auth">Auth</a>
+                    </li>
+                    <li class="navigation-item">
                         <a href="#skills">Skills</a>
                     </li>
                     <li class="navigation-item">
@@ -36,6 +39,33 @@
                 </div>
             </div>
         </div>
+        <section class="section" id="auth">
+            <div class="container">
+                <div class="section-title">Auth</div>
+                <ul class="request-list">
+                    <li class="request-list__item">
+                        <div class="request-method post">post</div>
+                        <div class="request-route">/login</div>
+                        <div class="request-description">
+                            <ul class="request-fields">
+                                <li class="request-field require">
+                                    <div class="field-name">login</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                                <li class="request-field require">
+                                    <div class="field-name">password</div>
+                                    <div class="field-type">string</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="request-list__item">
+                        <div class="request-method get">get</div>
+                        <div class="request-route">/logout</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
         <section class="section" id="skills">
             <div class="container">
                 <div class="section-title">Skills</div>
