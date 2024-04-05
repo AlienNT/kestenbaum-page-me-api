@@ -4,8 +4,11 @@ import {Skill} from "../models/index.js";
 import statusCode from "../helpers/statusCodeHelper.js";
 import DocumentFieldService from "../services/documentFieldService.js";
 
+import {CustomRequest} from "../types/index.js";
+import {Response} from "express";
+
 class SkillController {
-    async gelAll(req, res) {
+    async gelAll(req: CustomRequest, res: Response) {
         try {
             const skills = await Skill.find({})
 
@@ -27,7 +30,7 @@ class SkillController {
         }
     }
 
-    async gelOne(req, res) {
+    async gelOne(req: CustomRequest, res: Response) {
         try {
             const {id} = req.params
 
@@ -51,7 +54,7 @@ class SkillController {
         }
     }
 
-    async create(req, res) {
+    async create(req: CustomRequest, res: Response) {
         try {
             const skillFields = DocumentFieldService.requestSkillFields(req)
 
@@ -81,7 +84,7 @@ class SkillController {
         }
     }
 
-    async update(req, res) {
+    async update(req: CustomRequest, res: Response) {
         try {
             const {id} = req?.params
             const skillFields = DocumentFieldService.requestSkillFields(req)
@@ -120,7 +123,7 @@ class SkillController {
         }
     }
 
-    async delete(req, res) {
+    async delete(req: CustomRequest, res: Response) {
         try {
             const {id} = req?.params
 
