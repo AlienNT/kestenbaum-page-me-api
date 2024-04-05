@@ -3,9 +3,12 @@ import {errorResponse, successResponse} from "../helpers/responseHelper.js";
 import {Category} from "../models/index.js";
 import DocumentFieldService from "../services/documentFieldService.js";
 import statusCode from "../helpers/statusCodeHelper.js";
+import {CustomRequest} from "../types/index.js";
+
+import {Response} from "express";
 
 class CategoryController {
-    async get(req, res) {
+    async get(req: CustomRequest, res: Response) {
         try {
             const categories = await Category.find({})
 
@@ -26,7 +29,7 @@ class CategoryController {
         }
     }
 
-    async getWithWorks(req, res) {
+    async getWithWorks(req: CustomRequest, res: Response) {
         try {
             const {id} = req?.params
 
@@ -54,7 +57,7 @@ class CategoryController {
         }
     }
 
-    async create(req, res) {
+    async create(req: CustomRequest, res: Response) {
         try {
             const categoryFields = DocumentFieldService.requestCategoryFields(req)
 
@@ -83,7 +86,7 @@ class CategoryController {
         }
     }
 
-    async update(req, res) {
+    async update(req: CustomRequest, res: Response) {
         try {
             const {id} = req?.params
 
@@ -95,9 +98,9 @@ class CategoryController {
 
             const categoryFields = DocumentFieldService.requestCategoryFields(req)
 
-            const updatedCategory = await Category.findByIdAndUpdate(id, categoryFields, {
+            const updatedCategory = categoryFields ? await Category.findByIdAndUpdate(id, categoryFields, {
                 returnDocument: 'after'
-            })
+            }) : null
 
             if (!updatedCategory) {
                 return errorResponse(res, {
@@ -116,7 +119,7 @@ class CategoryController {
         }
     }
 
-    async delete(req, res) {
+    async delete(req: CustomRequest, res: Response) {
         try {
             const {id} = req?.params
 
