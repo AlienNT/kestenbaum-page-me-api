@@ -1,55 +1,47 @@
 import {randomUUID} from "node:crypto"
 import jwt from "jsonwebtoken";
+
 import config from "../config.js";
 import RequestService from "./requestService.js";
 import {Token} from "../models/index.js";
 
+import {CustomRequest, Id, Uuid, TokenType} from "../types/index.js";
+import {GenerateTokens} from "../types/services/tokenServiceInterfaces.js";
+import {TokenDocument} from "../types/documents.js";
+
 class TokenService {
-    async create() {
-        try {
+    async verify(token: TokenType): Promise<jwt.JwtPayload | null | string> {
+        if (!config.SECRET) return null
 
-        } catch (e) {
-
-        }
-    }
-
-    async refresh() {
-
-    }
-
-    async verify(token) {
         return jwt.verify(token, config.SECRET);
     }
 
-    async getToken(req) {
-        //для токена доступа
-       /* const authorizationHeader = req.headers.authorization
-        return authorizationHeader ? authorizationHeader.split(' ')[1] : null*/
-
+    async getToken(req: CustomRequest): Promise<TokenType | null> {
         return req?.cookies?.token || null
     }
 
-
-    async generateTokens(_id) {
+    async generateTokens(_id: Id): Promise<GenerateTokens> {
         return {
-            refreshToken: this.generateRefreshToken(),
-            accessToken: this.generateAccessToken(_id)
+            refreshToken: await this.generateRefreshToken(),
+            accessToken: await this.generateAccessToken(_id)
         }
     }
 
-    async generateRefreshToken() {
+    async generateRefreshToken(): Promise<Uuid> {
         return randomUUID()
     }
 
-    async generateAccessToken(_id) {
+    async generateAccessToken(_id: Id): Promise<TokenType | null> {
+        if (!config.SECRET) return null
+
         return jwt.sign({_id}, config.SECRET, {expiresIn: process.env.PROD ? '10m' : '1d'})
     }
 
-    async createAndSave(req, userId) {
+    async createAndSave(req: CustomRequest, userId: Id): Promise<TokenDocument | null> {
         return new Promise(async (resolve, reject) => {
             try {
                 const tokens = await Token.find({
-                    user:userId
+                    user: userId
                 })
 
                 if (tokens) {
