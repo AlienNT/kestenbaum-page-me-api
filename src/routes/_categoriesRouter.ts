@@ -1,11 +1,10 @@
 import {Router} from "express";
+import {AuthMiddleware} from "../middlewares/authMiddleware.js";
 
 import {routeNames} from "../helpers/routesHelper.js";
 import CategoryController from "../controllers/categoryController.js";
 
-import {AuthMiddleware} from "../middlewares/authMiddleware.js";
-
-const router = new Router()
+const router: Router = Router()
     .get(
         routeNames.CATEGORIES.GET_ALL,
         CategoryController.get

@@ -6,7 +6,7 @@ import _worksRouter from "./_worksRouter.js";
 import _categoriesRouter from "./_categoriesRouter.js";
 import _authRouter from "./_authRouter.js";
 
-const router = new Router()
+const router: Router = Router()
     .use(_authRouter)
     .use(_contactsRouter)
     .use(_skillsRouter)

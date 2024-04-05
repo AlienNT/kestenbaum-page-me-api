@@ -1,9 +1,10 @@
 import {Router} from "express";
 import {AuthMiddleware} from "../middlewares/authMiddleware.js";
+
 import {routeNames} from "../helpers/routesHelper.js";
 import WorkController from "../controllers/workController.js";
 
-const router = new Router()
+const router: Router = Router()
     .get(
         routeNames.WORKS.GET_ALL,
         WorkController.getAll

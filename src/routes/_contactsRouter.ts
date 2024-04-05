@@ -4,7 +4,7 @@ import {AuthMiddleware} from "../middlewares/authMiddleware.js";
 import {routeNames} from "../helpers/routesHelper.js";
 import ContactController from "../controllers/contactController.js";
 
-const router = new Router()
+const router: Router = Router()
     .get(
         routeNames.CONTACTS.GET_ALL,
         ContactController.gelAll

@@ -4,7 +4,7 @@ import {AuthMiddleware} from "../middlewares/authMiddleware.js";
 import {routeNames} from "../helpers/routesHelper.js";
 import SkillController from "../controllers/skillController.js";
 
-const router = new Router()
+const router: Router = Router()
     .get(
         routeNames.SKILLS.GET_ALL,
         SkillController.gelAll

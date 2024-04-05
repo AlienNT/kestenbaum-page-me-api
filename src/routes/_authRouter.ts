@@ -1,9 +1,10 @@
 import {Router} from "express";
-import {routeNames} from "../helpers/routesHelper.js";
-import AuthController from "../controllers/authController.js";
 import {AuthMiddleware} from "../middlewares/authMiddleware.js";
 
-const router = new Router()
+import {routeNames} from "../helpers/routesHelper.js";
+import AuthController from "../controllers/authController.js";
+
+const router: Router = Router()
     .post(
         routeNames.AUTH.LOGIN,
         AuthController.login
