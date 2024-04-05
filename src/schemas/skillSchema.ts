@@ -1,6 +1,7 @@
 import {Schema} from "mongoose";
+import {ISkill} from "../types/models.js";
 
-const skillSchema = new Schema({
+const skillSchema = new Schema<ISkill>({
     title: {
         type: Schema.Types.String,
     },

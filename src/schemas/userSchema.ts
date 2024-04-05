@@ -1,6 +1,7 @@
 import {Schema} from "mongoose";
+import {IUser} from "../types/models.js";
 
-const userSchema = new Schema({
+const userSchema = new Schema<IUser>({
     login: {
         type: Schema.Types.String,
         required: [true, 'login required']

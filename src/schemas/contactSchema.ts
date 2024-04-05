@@ -1,6 +1,7 @@
 import {Schema} from "mongoose";
+import {IContact} from "../types/models.js";
 
-const contactSchema = new Schema({
+const contactSchema = new Schema<IContact>({
     title: {
         type: Schema.Types.String,
         required: [true, 'contact title required']

@@ -1,10 +1,11 @@
 import {Schema} from "mongoose";
+import {ICategory} from "../types/models.js";
 
-const categorySchema = new Schema({
+const categorySchema = new Schema<ICategory>({
     value: {
         type: Schema.Types.String,
         required: [true, 'category name required'],
-        unique: [true, 'category name must be unique']
+        unique: true
     },
     works: [
         {

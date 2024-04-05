@@ -1,6 +1,7 @@
 import {Schema} from "mongoose";
+import {IWork} from "../types/models.js";
 
-const workSchema = new Schema({
+const workSchema = new Schema<IWork>({
     title: {
         type: Schema.Types.String,
         required: [true, 'work title required']
