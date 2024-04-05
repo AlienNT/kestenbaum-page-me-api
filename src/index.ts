@@ -1,22 +1,22 @@
-import Express from 'express'
+import express, {Express, Response, Request, NextFunction} from 'express'
 import mongoose from "mongoose";
 import dotenv from 'dotenv'
 
 import routes from "./routes/index.js";
 import config from "./config.js";
-import bodyParser from "body-parser";
 
-import cors from "cors";
-import cookieParser from "cookie-parser";
-import {errorResponse} from "./helpers/responseHelper.js";
 import url from "url";
+import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
+import cors from "cors";
+import {errorResponse} from "./helpers/responseHelper.js";
 
-let isConnect = false
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
-const filePath = __dirname + './views'
+let isConnect: boolean = false
+const __dirname: string = url.fileURLToPath(new URL('.', import.meta.url));
+const filePath: string = __dirname + '../views'
 dotenv.config()
 
-const API = new Express()
+const API: Express = express()
     .use(checkConnection)
     .use(cookieParser())
     .use(bodyParser.json({limit: "10mb"}))
@@ -25,18 +25,22 @@ const API = new Express()
         credentials: true,
     }))
     .use(config.API_ROUTE, routes)
-    .use(Express.static(filePath))
+    .use(express.static(filePath))
 
 async function server() {
     try {
-        await mongoose.connect(config.DB)
+        const DB_URL = config.DB
+
+        if (!DB_URL) return
+
+        await mongoose.connect(DB_URL)
             .then(() => isConnect = true)
             .catch(() => isConnect = false)
 
         API.listen(config.PORT, () => {
             console.log('server started in port: ', config.PORT)
         })
-        API.get('/', (req, res) => {
+        API.get('/', (req: Request, res: Response) => {
             res.sendFile(filePath + '/index.html')
         })
 
@@ -45,7 +49,7 @@ async function server() {
     }
 }
 
-function checkConnection(req, res, next) {
+function checkConnection(req: Request, res: Response, next: NextFunction) {
     if (isConnect) {
         return next()
     }
@@ -56,4 +60,4 @@ function checkConnection(req, res, next) {
     })
 }
 
-await server()
+server().then(() => console.log('server start success'))
