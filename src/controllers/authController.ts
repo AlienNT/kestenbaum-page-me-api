@@ -6,8 +6,11 @@ import AuthService from "../services/authService.js";
 import TokenService from "../services/tokenService.js";
 import DocumentFieldService from "../services/documentFieldService.js";
 
+import {CustomRequest} from "../types/index.js";
+import {Response} from "express";
+
 class AuthController {
-    async login(req, res) {
+    async login(req: CustomRequest, res: Response) {
         try {
             const fields = DocumentFieldService.requestAuthFields(req)
 
@@ -66,7 +69,7 @@ class AuthController {
         }
     }
 
-    async logout(req, res) {
+    async logout(req: CustomRequest, res: Response) {
         try {
             const {token} = req
 
@@ -91,7 +94,7 @@ class AuthController {
         }
     }
 
-    async registration(req, res) {
+    async registration(req: CustomRequest, res: Response) {
         try {
             const {login, password} = req.body
 
