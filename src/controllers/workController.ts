@@ -1,10 +1,14 @@
 import {errorResponse, successResponse} from "../helpers/responseHelper.js";
+
 import {Work} from "../models/index.js";
 import statusCode from "../helpers/statusCodeHelper.js";
 import DocumentFieldService from "../services/documentFieldService.js";
 
+import {CustomRequest} from "../types/index.js";
+import {Response} from "express";
+
 class WorkController {
-    async getAll(req, res) {
+    async getAll(req: CustomRequest, res: Response) {
         try {
             const works = await Work.find({})
 
@@ -25,7 +29,7 @@ class WorkController {
         }
     }
 
-    async getOne(req, res) {
+    async getOne(req: CustomRequest, res: Response) {
         try {
             const {id} = req?.params
 
@@ -56,7 +60,7 @@ class WorkController {
 
     }
 
-    async create(req, res) {
+    async create(req: CustomRequest, res: Response) {
         try {
             const workFields = DocumentFieldService.requestWorkFields(req)
 
@@ -86,7 +90,7 @@ class WorkController {
         }
     }
 
-    async update(req, res) {
+    async update(req: CustomRequest, res: Response) {
         try {
             const {id} = req?.params
 
@@ -127,7 +131,7 @@ class WorkController {
         }
     }
 
-    async delete(req, res) {
+    async delete(req: CustomRequest, res: Response) {
         try {
             const {id} = req?.params
 
