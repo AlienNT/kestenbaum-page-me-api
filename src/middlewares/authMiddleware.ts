@@ -1,9 +1,13 @@
 import {errorResponse} from "../helpers/responseHelper.js";
+
 import statusCode from "../helpers/statusCodeHelper.js";
 import TokenService from "../services/tokenService.js";
-import {Token, User} from "../models/index.js";
+import {Token} from "../models/index.js";
 
-export async function AuthMiddleware(req, res, next) {
+import {NextFunction, Response} from "express";
+import {CustomRequest} from "../types/index.js";
+
+export async function AuthMiddleware(req: CustomRequest, res: Response, next: NextFunction) {
     if (req.method === "OPTIONS") {
         return next()
     }
