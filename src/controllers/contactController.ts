@@ -1,10 +1,14 @@
 import {errorResponse, successResponse} from "../helpers/responseHelper.js";
+
 import {Contact} from "../models/index.js";
 import statusCode from "../helpers/statusCodeHelper.js";
 import DocumentFieldService from "../services/documentFieldService.js";
 
+import {CustomRequest} from "../types/index.js";
+import {Response} from "express";
+
 class ContactController {
-    async gelAll(req, res) {
+    async gelAll(req: CustomRequest, res: Response) {
         try {
             const contacts = await Contact.find({})
 
@@ -24,7 +28,7 @@ class ContactController {
         }
     }
 
-    async gelOne(req, res) {
+    async gelOne(req: CustomRequest, res: Response) {
         try {
             const {id} = req?.params
 
@@ -53,7 +57,7 @@ class ContactController {
         }
     }
 
-    async create(req, res) {
+    async create(req: CustomRequest, res: Response) {
         try {
             const contactFields = DocumentFieldService.requestContactFields(req)
 
@@ -83,7 +87,7 @@ class ContactController {
         }
     }
 
-    async update(req, res) {
+    async update(req: CustomRequest, res: Response) {
         try {
             const {id} = req?.params
 
@@ -124,7 +128,7 @@ class ContactController {
         }
     }
 
-    async delete(req, res) {
+    async delete(req: CustomRequest, res: Response) {
         try {
             const {id} = req?.params
 
