@@ -14,8 +14,11 @@ const router: Router = Router()
         AuthMiddleware,
         AuthController.logout
     )
-    .post(
-        routeNames.AUTH.REGISTRATION,
-        AuthController.registration
-    )
+/**
+ * для разработки
+ */
+/*.post(
+    routeNames.AUTH.REGISTRATION,
+    AuthController.registration
+)*/
 export default router
