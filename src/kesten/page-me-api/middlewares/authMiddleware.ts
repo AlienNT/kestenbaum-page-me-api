@@ -2,10 +2,10 @@ import {errorResponse} from "../helpers/responseHelper.js";
 
 import statusCode from "../helpers/statusCodeHelper.js";
 import TokenService from "../services/tokenService.js";
-import {Token} from "../models/index.js";
 
 import {NextFunction, Response} from "express";
 import {CustomRequest} from "../types/index.js";
+import {PAGE_ME} from "../models/index.js";
 
 export async function AuthMiddleware(req: CustomRequest, res: Response, next: NextFunction) {
     if (req.method === "OPTIONS") {
@@ -22,7 +22,7 @@ export async function AuthMiddleware(req: CustomRequest, res: Response, next: Ne
             })
         }
 
-        const foundedToken = await Token
+        const foundedToken = await PAGE_ME.Token
             .findOne({tokenValue: responseToken})
             .populate('user')
             .lean()

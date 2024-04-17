@@ -1,5 +1,5 @@
 import statusCode from "./statusCodeHelper.js";
-import config from "../config.js";
+import config from "../config/config.js";
 import {CookieOptions, Response} from "express";
 
 const cookieConfig: CookieOptions = {

@@ -1,34 +1,35 @@
 import {errorResponse, successResponse} from "../helpers/responseHelper.js";
 
-import {Contact} from "../models/index.js";
 import statusCode from "../helpers/statusCodeHelper.js";
 import DocumentFieldService from "../services/documentFieldService.js";
 
 import {CustomRequest} from "../types/index.js";
 import {Response} from "express";
+import {PAGE_ME} from "../models/index.js";
 
-class ContactController {
-    async gelAll(req: CustomRequest, res: Response) {
+class WorkController {
+    async getAll(req: CustomRequest, res: Response) {
         try {
-            const contacts = await Contact.find({})
+            const works = await PAGE_ME.Work.find({})
 
-            if (!contacts) {
+            if (!works) {
                 return errorResponse(res, {
-                    errors: ['get contacts error']
+                    errors: ['get works error']
                 })
             }
+
             return successResponse(res, {
-                data: contacts
+                data: works
             })
         } catch (e) {
-            console.log('GET_ALL contact error', e)
+            console.log('GET_ALL work error', e)
             return errorResponse(res, {
                 errors: e
             })
         }
     }
 
-    async gelOne(req: CustomRequest, res: Response) {
+    async getOne(req: CustomRequest, res: Response) {
         try {
             const {id} = req?.params
 
@@ -39,40 +40,42 @@ class ContactController {
                 })
             }
 
-            const contact = await Contact.findById(id)
+            const contact = await PAGE_ME.Work.findById(id)
 
             if (!contact) {
                 return errorResponse(res, {
-                    errors: `contact (id: ${id}) not found`
+                    errors: `work (id: ${id}) not found`
                 })
             }
+
             return successResponse(res, {
                 data: contact
             })
         } catch (e) {
-            console.log('GET_ONE contact error', e)
+            console.log('GET_ONE work error', e)
             return errorResponse(res, {
                 errors: e
             })
         }
+
     }
 
     async create(req: CustomRequest, res: Response) {
         try {
-            const contactFields = DocumentFieldService.requestContactFields(req)
+            const workFields = DocumentFieldService.requestWorkFields(req)
 
-            if (!contactFields) {
+            if (!workFields) {
                 return errorResponse(res, {
                     status: statusCode.BAD_REQUEST,
                     errors: ['incorrect fields']
                 })
             }
 
-            const newContact = await Contact.create(contactFields)
+            const newContact = await PAGE_ME.Work.create(workFields)
 
             if (!newContact) {
                 return errorResponse(res, {
-                    errors: ['contact create error']
+                    errors: ['work create error']
                 })
             }
 
@@ -80,7 +83,7 @@ class ContactController {
                 data: newContact
             })
         } catch (e) {
-            console.log('CREATE contact error', e)
+            console.log('CREATE work error', e)
             return errorResponse(res, {
                 errors: e
             })
@@ -98,30 +101,30 @@ class ContactController {
                 })
             }
 
-            const contactFields = DocumentFieldService.requestContactFields(req)
+            const workFields = DocumentFieldService.requestWorkFields(req)
 
-            if (!contactFields) {
+            if (!workFields) {
                 return errorResponse(res, {
                     status: statusCode.BAD_REQUEST,
                     errors: ['incorrect contact fields']
                 })
             }
 
-            const updatedContact = await Contact.findByIdAndUpdate(id, contactFields, {
+            const updatedWork = await PAGE_ME.Work.findByIdAndUpdate(id, workFields, {
                 returnDocument: 'after'
             })
 
-            if (!updatedContact) {
+            if (!updatedWork) {
                 return errorResponse(res, {
-                    errors: [`contact (id: ${id}) not updated`]
+                    errors: [`work (id: ${id}) not updated`]
                 })
             }
 
             return successResponse(res, {
-                data: updatedContact
+                data: updatedWork
             })
         } catch (e) {
-            console.log('UPDATE contact error', e)
+            console.log('UPDATE work error', e)
             return errorResponse(res, {
                 errors: e
             })
@@ -139,21 +142,21 @@ class ContactController {
                 })
             }
 
-            const deletedContact = await Contact.findByIdAndDelete(id, {
+            const deletedWork = await PAGE_ME.Work.findByIdAndDelete(id, {
                 returnDocument: 'after'
             })
 
-            if (!deletedContact) {
+            if (!deletedWork) {
                 return errorResponse(res, {
-                    errors: ['contact not deleted']
+                    errors: ['work not deleted']
                 })
             }
 
             return successResponse(res, {
-                data: deletedContact
+                data: deletedWork
             })
         } catch (e) {
-            console.log('DELETE contact error', e)
+            console.log('DELETE work error', e)
             return errorResponse(res, {
                 errors: e
             })
@@ -161,4 +164,4 @@ class ContactController {
     }
 }
 
-export default new ContactController()
+export default new WorkController()

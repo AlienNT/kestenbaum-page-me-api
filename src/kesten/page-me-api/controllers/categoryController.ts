@@ -1,16 +1,16 @@
 import {errorResponse, successResponse} from "../helpers/responseHelper.js";
 
-import {Category} from "../models/index.js";
 import DocumentFieldService from "../services/documentFieldService.js";
 import statusCode from "../helpers/statusCodeHelper.js";
-import {CustomRequest} from "../types/index.js";
 
+import {CustomRequest} from "../types/index.js";
 import {Response} from "express";
+import {PAGE_ME} from "../models/index.js";
 
 class CategoryController {
     async get(req: CustomRequest, res: Response) {
         try {
-            const categories = await Category.find({})
+            const categories = await PAGE_ME.Category.find({})
 
             if (!categories) {
                 return errorResponse(res, {
@@ -38,7 +38,7 @@ class CategoryController {
                     status: statusCode.BAD_REQUEST, errors: [`incorrect id: ${id}`]
                 })
             }
-            const categoryWithWorks = await Category.findById(id).populate('Work')
+            const categoryWithWorks = await PAGE_ME.Category.findById(id).populate('Work')
 
             if (!categoryWithWorks) {
                 return errorResponse(res, {
@@ -67,7 +67,7 @@ class CategoryController {
                 })
             }
 
-            const newCategory = await Category.create(categoryFields)
+            const newCategory = await PAGE_ME.Category.create(categoryFields)
 
             if (!newCategory) {
                 return errorResponse(res, {
@@ -98,7 +98,7 @@ class CategoryController {
 
             const categoryFields = DocumentFieldService.requestCategoryFields(req)
 
-            const updatedCategory = categoryFields ? await Category.findByIdAndUpdate(id, categoryFields, {
+            const updatedCategory = categoryFields ? await PAGE_ME.Category.findByIdAndUpdate(id, categoryFields, {
                 returnDocument: 'after'
             }) : null
 
@@ -129,7 +129,7 @@ class CategoryController {
                 })
             }
 
-            const deletedCategory = await Category.findByIdAndDelete(id)
+            const deletedCategory = await PAGE_ME.Category.findByIdAndDelete(id)
 
             if (!deletedCategory) {
                 return errorResponse(res, {

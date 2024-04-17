@@ -1,16 +1,16 @@
 import {errorResponse, successResponse} from "../helpers/responseHelper.js";
 
-import {Skill} from "../models/index.js";
 import statusCode from "../helpers/statusCodeHelper.js";
 import DocumentFieldService from "../services/documentFieldService.js";
 
 import {CustomRequest} from "../types/index.js";
 import {Response} from "express";
+import {PAGE_ME} from "../models/index.js";
 
 class SkillController {
     async gelAll(req: CustomRequest, res: Response) {
         try {
-            const skills = await Skill.find({})
+            const skills = await PAGE_ME.Skill.find({})
 
             if (!skills) {
                 return errorResponse(res, {
@@ -34,7 +34,7 @@ class SkillController {
         try {
             const {id} = req.params
 
-            const skill = await Skill.findById(id)
+            const skill = await PAGE_ME.Skill.findById(id)
 
             if (!skill) {
                 return errorResponse(res, {
@@ -65,7 +65,7 @@ class SkillController {
                 })
             }
 
-            const newSkill = await Skill.create(skillFields)
+            const newSkill = await PAGE_ME.Skill.create(skillFields)
 
             if (!newSkill) {
                 return errorResponse(res, {
@@ -102,7 +102,7 @@ class SkillController {
                 })
             }
 
-            const updatedSkill = await Skill.findByIdAndUpdate(id, skillFields, {
+            const updatedSkill = await PAGE_ME.Skill.findByIdAndUpdate(id, skillFields, {
                 returnDocument: "after"
             })
 
@@ -134,7 +134,7 @@ class SkillController {
                 })
             }
 
-            const deletedSkill = await Skill.findByIdAndDelete(id, {
+            const deletedSkill = await PAGE_ME.Skill.findByIdAndDelete(id, {
                 returnDocument: 'after'
             })
 

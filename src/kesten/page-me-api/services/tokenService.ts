@@ -1,13 +1,13 @@
 import {randomUUID} from "node:crypto"
 import jwt from "jsonwebtoken";
 
-import config from "../config.js";
+import config from "../config/config.js";
 import RequestService from "./requestService.js";
-import {Token} from "../models/index.js";
 
 import {CustomRequest, Id, Uuid, TokenType} from "../types/index.js";
 import {GenerateTokens} from "../types/services/tokenServiceInterfaces.js";
 import {TokenDocument} from "../types/documents.js";
+import {PAGE_ME} from "../models/index.js";
 
 class TokenService {
     async verify(token: TokenType): Promise<jwt.JwtPayload | null | string> {
@@ -40,14 +40,14 @@ class TokenService {
     async createAndSave(req: CustomRequest, userId: Id): Promise<TokenDocument | null> {
         return new Promise(async (resolve, reject) => {
             try {
-                const tokens = await Token.find({
+                const tokens = await PAGE_ME.Token.find({
                     user: userId
                 })
 
                 if (tokens) {
-                    await Token.deleteMany({user: userId})
+                    await PAGE_ME.Token.deleteMany({user: userId})
                 }
-                const token = await Token.create({
+                const token = await PAGE_ME.Token.create({
                     remoteAddress: RequestService.getIP(req),
                     userAgent: RequestService.getUserAgent(req),
                     tokenValue: await this.generateRefreshToken(),

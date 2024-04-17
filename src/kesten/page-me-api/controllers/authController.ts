@@ -1,5 +1,4 @@
 import {errorResponse, setCookie, successResponse} from "../helpers/responseHelper.js";
-import {Token, User} from "../models/index.js";
 
 import statusCode from "../helpers/statusCodeHelper.js";
 import AuthService from "../services/authService.js";
@@ -8,6 +7,7 @@ import DocumentFieldService from "../services/documentFieldService.js";
 
 import {CustomRequest} from "../types/index.js";
 import {Response} from "express";
+import {PAGE_ME} from "../models/index.js";
 
 class AuthController {
     async login(req: CustomRequest, res: Response) {
@@ -21,7 +21,7 @@ class AuthController {
                 })
             }
 
-            const user = await User.findOne({login: fields.login})
+            const user = await PAGE_ME.User.findOne({login: fields.login})
 
             if (!user) {
                 return errorResponse(res, {
@@ -51,7 +51,7 @@ class AuthController {
             }
 
             user.token = newToken._id
-            user.save()
+            await user.save()
 
             setCookie(res, {
                 name: 'token',
@@ -73,7 +73,7 @@ class AuthController {
         try {
             const {token} = req
 
-            const foundedToken = await Token.findOneAndDelete({
+            const foundedToken = await PAGE_ME.Token.findOneAndDelete({
                 tokenValue: token
             })
 
@@ -107,7 +107,7 @@ class AuthController {
 
             const passwordHash = await AuthService.hashPassword(password)
 
-            const newUser = await User.create({
+            const newUser = await PAGE_ME.User.create({
                 password: passwordHash,
                 login
             })
