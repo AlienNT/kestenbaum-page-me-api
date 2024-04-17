@@ -1,5 +1,5 @@
 import {Model} from "mongoose";
-import {Id} from "./index.js";
+import {Id} from "../../../types.js";
 
 export interface ISkill {
     title?: string,

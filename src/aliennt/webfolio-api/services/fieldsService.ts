@@ -1,6 +1,6 @@
 import {fieldName} from "../helpers/fieldName.js";
 import {Request} from "express";
-import {Id} from "../../../types/index.js";
+import {Id} from "../../../types.js";
 
 interface TokenObject {
     _id: Id,

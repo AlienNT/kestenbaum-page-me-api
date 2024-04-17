@@ -4,10 +4,11 @@ import jwt from "jsonwebtoken";
 import config from "../config/config.js";
 import RequestService from "./requestService.js";
 
-import {CustomRequest, Id, Uuid, TokenType} from "../types/index.js";
+import {CustomRequest, Uuid, TokenType} from "../types/index.js";
 import {GenerateTokens} from "../types/services/tokenServiceInterfaces.js";
 import {TokenDocument} from "../types/documents.js";
 import {PAGE_ME} from "../models/index.js";
+import {Id} from "../../../types.js";
 
 class TokenService {
     async verify(token: TokenType): Promise<jwt.JwtPayload | null | string> {

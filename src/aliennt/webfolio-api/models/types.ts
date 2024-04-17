@@ -1,5 +1,5 @@
-import {Id} from "../../../types/index.js";
 import {Document, Model} from "mongoose";
+import {Id} from "../../../types.js";
 
 export interface UserSchema {
     email: string,

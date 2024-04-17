@@ -25,26 +25,23 @@ export function errorResponse(response: Response, {
     return response.status(status).json({errors, status})
 }
 
-export function setCookie(response: Response, {
-    name = '',
-    value = '',
-    config = cookieConfig
-}: { name: string, value: string, config: CookieOptions }) {
-    response.cookie(
-        name,
-        value,
-        config
-    )
+interface SetCookie {
+    name: string,
+    value: string,
+    config?: CookieOptions
 }
 
-export function clearCookie(response: Response, {
-    name = '',
-    config = cookieConfig
-}: { name: string, config: CookieOptions }) {
-    response.clearCookie(
-        name,
-        config
-    )
+export function setCookie(response: Response, {name, value, config = cookieConfig}: SetCookie) {
+    response.cookie(name, value, config)
+}
+
+interface ClearCookie {
+    name: string,
+    config?: CookieOptions
+}
+
+export function clearCookie(response: Response, {name, config = cookieConfig}: ClearCookie) {
+    response.clearCookie(name, config)
 }
 
 export function checkRequireFields(fields: any, errorMessage: any) {
