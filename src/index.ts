@@ -1,42 +1,45 @@
-import express, {Express, Response, Request, NextFunction} from 'express'
-import mongoose from "mongoose";
+import express, {Express, Response, Request} from 'express'
 import dotenv from 'dotenv'
-
-import routes from "./routes/index.js";
-import config from "./config.js";
-
 import url from "url";
 import cookieParser from "cookie-parser";
+
+import PAGE_ME_CONFIG from "./kesten/page-me-api/config/config.js";
+import WEBFOLIO_CONFIG from "./aliennt/webfolio-api/config/index.js";
+
+import PAGE_ME_ROUTER from "./kesten/page-me-api/index.js";
+import WEBFOLIO_API_ROUTER from "./aliennt/webfolio-api/index.js";
+
 import bodyParser from "body-parser";
 import cors from "cors";
-import {errorResponse} from "./helpers/responseHelper.js";
+import config from "./config.js";
 
-let isConnect: boolean = false
 const __dirname: string = url.fileURLToPath(new URL('.', import.meta.url));
 const filePath: string = __dirname + '../views'
 dotenv.config()
 
 const API: Express = express()
-    .use(checkConnection)
     .use(cookieParser())
     .use(bodyParser.json({limit: "10mb"}))
-    .use(cors({
-        origin: config.ORIGINS,
-        credentials: true,
-    }))
-    .use(config.API_ROUTE, routes)
+    .use(
+        PAGE_ME_CONFIG.API_ROUTE,
+        cors({
+            origin: PAGE_ME_CONFIG.ORIGINS,
+            credentials: true,
+        }),
+        PAGE_ME_ROUTER
+    )
+    .use(
+        WEBFOLIO_CONFIG.API_ROUTE,
+        cors({
+            origin: WEBFOLIO_CONFIG.ORIGINS,
+            credentials: true
+        }),
+        WEBFOLIO_API_ROUTER
+    )
     .use(express.static(filePath))
 
 async function server() {
     try {
-        const DB_URL = config.DB
-
-        if (!DB_URL) return
-
-        await mongoose.connect(DB_URL)
-            .then(() => isConnect = true)
-            .catch(() => isConnect = false)
-
         API.listen(config.PORT, () => {
             console.log('server started in port: ', config.PORT)
         })
@@ -47,17 +50,6 @@ async function server() {
     } catch (e) {
         console.log('server start error', e)
     }
-}
-
-function checkConnection(req: Request, res: Response, next: NextFunction) {
-    if (isConnect) {
-        return next()
-    }
-
-    return errorResponse(res, {
-        status: 500,
-        errors: ['DB connect error']
-    })
 }
 
 server().then(() => console.log('server start success'))

@@ -5,10 +5,10 @@ import FieldsService from "./fieldsService.js";
 import WEBFOLIO_API from "../models/index.js";
 
 import {randomUUID} from "node:crypto";
-import {Id} from "../../../types/index.js";
+
 import {Request} from "express";
-import {UserDocument, UserModel, UserSchema} from "../models/types.js";
-import {Document} from "mongoose";
+import {UserDocument} from "../models/types.js";
+import {Id} from "../../../types.js";
 
 interface CreateTokens {
     req: Request,

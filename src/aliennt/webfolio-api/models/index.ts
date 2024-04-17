@@ -6,8 +6,6 @@ import {skillSchema} from "../schemas/skillSchema.js";
 import {workSchema} from "../schemas/workSchema.js";
 import {contactSchema} from "../schemas/contactSchema.js";
 
-import config from "../config/index.js";
-
 import {
     ContactModel,
     ContactSchema,
