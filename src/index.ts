@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import url from "url";
 import cookieParser from "cookie-parser";
 
+import tokensMiddleware from "./aliennt/webfolio-api/middlewares/tokensMiddleware.js";
+
 import PAGE_ME_CONFIG from "./kesten/page-me-api/config/config.js";
 import WEBFOLIO_CONFIG from "./aliennt/webfolio-api/config/index.js";
 
@@ -34,6 +36,7 @@ const API: Express = express()
             origin: WEBFOLIO_CONFIG.ORIGINS,
             credentials: true
         }),
+        tokensMiddleware as any,
         WEBFOLIO_API_ROUTER
     )
     .use(express.static(filePath))

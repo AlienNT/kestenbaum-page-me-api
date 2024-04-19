@@ -7,7 +7,7 @@ export const cookieConfig: CookieOptions = {
     httpOnly: config.IS_COOKIE_SECURE,
     maxAge: config.REFRESH_TOKEN_EXPIRES.number,
     expires: config.REFRESH_TOKEN_EXPIRES.date,
-    sameSite: false
+    sameSite: true
 }
 
 
