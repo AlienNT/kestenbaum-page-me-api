@@ -4,10 +4,10 @@ import {CookieOptions, Response} from "express";
 
 export const cookieConfig: CookieOptions = {
     secure: config.IS_COOKIE_SECURE,
-    httpOnly: config.IS_COOKIE_SECURE,
+    httpOnly: true,
     maxAge: config.REFRESH_TOKEN_EXPIRES.number,
     expires: config.REFRESH_TOKEN_EXPIRES.date,
-    sameSite: true
+    sameSite: config.IS_COOKIE_SECURE ? "none" : 'lax'
 }
 
 
