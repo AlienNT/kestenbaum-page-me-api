@@ -41,10 +41,24 @@ export interface WorkSchema {
     chips?: string,
 }
 
+export interface ProfileLocale {
+    firstName: string,
+    lastName?: string,
+    greeting: string
+}
+
+export interface ProfileSchema {
+    en: ProfileLocale,
+    ru: ProfileLocale,
+    ua: ProfileLocale,
+    image?: string
+}
+
+export type ProfileModel = Model<ProfileSchema>
 export type UserModel = Model<UserSchema>
 export type TokenModel = Model<TokenSchema>
 export type SkillModel = Model<SkillSchema>
 export type ContactModel = Model<ContactSchema>
 export type WorkModel = Model<WorkSchema>
 
-export type UserDocument = Document<unknown, {}, UserSchema> & UserSchema & {_id: Id}
+export type UserDocument = Document<unknown, {}, UserSchema> & UserSchema & { _id: Id }
