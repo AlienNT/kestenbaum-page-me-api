@@ -18,11 +18,12 @@ const config = {
     ORIGINS: [
         "http://172.24.48.1:5173",
         "http://localhost:5173",
+        "http://localhost:5174",
         "https://webfolio-develop.onrender.com",
         "http://192.168.0.102:5173"
     ],
     ACCESS_TOKEN: {
-        options: {expiresIn: process.env.PROD ? '10m' : '2m'},
+        options: {expiresIn: process.env.PROD ? '10m' : '15m'},
         payload: ({_id}: { _id: Id }) => {
             return {_id}
         }

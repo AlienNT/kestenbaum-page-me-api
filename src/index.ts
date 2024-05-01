@@ -1,7 +1,10 @@
-import express, {Express, Response, Request} from 'express'
+import express, {Express, Response, Request, NextFunction} from 'express'
 import dotenv from 'dotenv'
 import url from "url";
 import cookieParser from "cookie-parser";
+import {CustomRequest} from "./aliennt/webfolio-api/types.js";
+
+import tokensMiddleware from "./aliennt/webfolio-api/middlewares/tokensMiddleware.js";
 
 import PAGE_ME_CONFIG from "./kesten/page-me-api/config/config.js";
 import WEBFOLIO_CONFIG from "./aliennt/webfolio-api/config/index.js";
@@ -18,6 +21,7 @@ const filePath: string = __dirname + '../views'
 dotenv.config()
 
 const API: Express = express()
+    .use(routeLogger as any)
     .use(cookieParser())
     .use(bodyParser.json({limit: "10mb"}))
     .use(
@@ -34,6 +38,7 @@ const API: Express = express()
             origin: WEBFOLIO_CONFIG.ORIGINS,
             credentials: true
         }),
+        tokensMiddleware as any,
         WEBFOLIO_API_ROUTER
     )
     .use(express.static(filePath))
@@ -46,10 +51,15 @@ async function server() {
         API.get('/', (req: Request, res: Response) => {
             res.sendFile(filePath + '/index.html')
         })
-
+        console.log('mode', process.env.NODE_ENV)
     } catch (e) {
         console.log('server start error', e)
     }
+}
+
+function routeLogger(req: CustomRequest, res: Response, next: NextFunction) {
+    console.log('route: ', req.path)
+    next()
 }
 
 server().then(() => console.log('server start success'))

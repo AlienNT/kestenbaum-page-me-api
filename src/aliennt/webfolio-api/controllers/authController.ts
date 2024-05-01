@@ -1,11 +1,13 @@
 import {errorResponse, setCookie, successResponse} from "../helpers/responseHelper.js";
 import {comparePassword, getHash} from "../helpers/authHelper.js";
+
 import WEBFOLIO_API from "../models/index.js";
 import statusCode from "../helpers/statusCodeHelper.js";
 import TokenService from "../services/tokenService.js";
+import FieldsService from "../services/fieldsService.js";
+
 import {Request, Response} from "express";
 import {CustomRequest} from "../types.js";
-import FieldsService from "../services/fieldsService.js";
 
 class AuthController {
     async login(req: Request, res: Response) {
@@ -39,7 +41,6 @@ class AuthController {
                     errors: ['get token error']
                 })
             }
-
             setCookie(res, {
                 name: 'refreshToken',
                 value: tokens?.refreshToken?.value
