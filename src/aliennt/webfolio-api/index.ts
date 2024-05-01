@@ -4,10 +4,12 @@ import _authRouter from "./routes/_authRouter.js";
 import _skillRouter from "./routes/_skillRouter.js";
 import _workRouter from "./routes/_workRouter.js";
 import _contactRouter from "./routes/_contactRouter.js";
+import _profileRouter from "./routes/_profileRouter.js";
 
 
 const WEBFOLIO_API_ROUTER = Router()
     .use(_authRouter)
+    .use(_profileRouter)
     .use(_skillRouter)
     .use(_workRouter)
     .use(_contactRouter)
