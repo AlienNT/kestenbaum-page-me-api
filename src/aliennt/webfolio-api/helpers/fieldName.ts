@@ -5,6 +5,7 @@ export const fieldName = {
         IMAGE: 'image'
     },
     WORK: {
+        TITLE: 'title',
         EN: 'en',
         RU:'ru',
         UA: 'ua',
