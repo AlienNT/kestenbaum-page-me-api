@@ -14,12 +14,15 @@ const workDescription = {
     maxLength: 200
 }
 
-const workTranslateSchema = new Schema({
-    title: workTitle,
-    description: workDescription,
-})
+const workTranslateSchema = {
+    description: workDescription
+}
 
 export const workSchema = new Schema<WorkSchema>({
+    title: {
+        type: Schema.Types.String,
+        required: [true, 'title is required']
+    },
     en: workTranslateSchema,
     ru: workTranslateSchema,
     ua: workTranslateSchema,
