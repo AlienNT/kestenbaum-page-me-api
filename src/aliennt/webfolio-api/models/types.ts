@@ -27,11 +27,11 @@ export interface ContactSchema {
 }
 
 export interface WorkTranslateSchema {
-    title: string,
     description?: string
 }
 
 export interface WorkSchema {
+    title: string,
     en: WorkTranslateSchema,
     ru: WorkTranslateSchema,
     ua: WorkTranslateSchema,
