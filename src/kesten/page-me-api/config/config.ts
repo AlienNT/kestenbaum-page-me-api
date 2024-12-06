@@ -7,7 +7,10 @@ export default {
     IS_COOKIE_SECURE: process.env.NODE_ENV !== "development",
     ORIGINS: [
         "http://localhost:5173",
+        "http://localhost:3000",
         "https://admin-panel-rho-six.vercel.app",
+        "https://page-me-6lox-3hn6y7spb-kestenbaums-projects.vercel.app",
+        "https://page-me-6lox-kestenbaums-projects.vercel.app",
         "https://page-me.vercel.app"
     ]
 }
